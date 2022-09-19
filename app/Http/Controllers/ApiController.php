@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Komentar;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ApiController extends Controller
@@ -14,6 +16,7 @@ class ApiController extends Controller
                 "message" => "Access denied"
             ], 403);
         }
-        return "BERHASIL";
+        $data = User::find(1);
+        return response()->json($data->komentar);
     }
 }

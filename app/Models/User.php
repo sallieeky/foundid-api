@@ -18,9 +18,14 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'nama',
         'email',
         'password',
+        'nik',
+        'foto_ktp',
+        'no_telp',
+        'instagram',
+        'whatsapp',
     ];
 
     /**
@@ -41,4 +46,19 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function komentar()
+    {
+        return $this->hasMany(Komentar::class, 'user_id', "id");
+    }
+
+    public function item()
+    {
+        return $this->hasMany(Item::class, "user_id", "id");
+    }
+
+    public function postingan()
+    {
+        return $this->hasMany(Postingan::class, "user_id", "id");
+    }
 }

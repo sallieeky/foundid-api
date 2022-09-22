@@ -14,5 +14,5 @@ use Illuminate\Support\Str;
 */
 
 Route::get('/', function () {
-    return Str::random(60);
+    return "Tes bisa";
 });

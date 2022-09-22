@@ -19,6 +19,7 @@ class UserSeeder extends Seeder
             "email" => "user1@mail.com",
             "nama" => "user1",
             "password" => bcrypt("user1"),
+            "role" => "user",
             "nik" => 64740202070001,
             "foto_ktp" => "user1.jpg",
             "no_telp" => "081234567890",

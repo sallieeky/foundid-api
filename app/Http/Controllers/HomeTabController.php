@@ -16,7 +16,7 @@ class HomeTabController extends Controller
                 "message" => "Access denied"
             ], 403);
         }
-        $data = Postingan::where("isDone", 0)->with("user", "item", "item.lokasi")->get();
+        $data = Postingan::where("isDone", 0)->with("user", "item", "item.lokasi")->whereRelation("item.lokasi", "kota", "Balikpapan")->get();
         return response()->json($data);
     }
 
@@ -53,7 +53,7 @@ class HomeTabController extends Controller
                 "message" => "Access denied"
             ], 403);
         }
-        $data = Postingan::where("isDone", 0)->where("hilang_ditemukan", "Kehilangan")->with("user", "item", "item.lokasi")->get();
+        $data = Postingan::where("isDone", 0)->where("hilang_ditemukan", "Kehilangan")->with("user", "item", "item.lokasi")->whereRelation("item.lokasi", "kota", "Balikpapan")->get();
         return response()->json($data);
     }
 
@@ -65,7 +65,7 @@ class HomeTabController extends Controller
                 "message" => "Access denied"
             ], 403);
         }
-        $data = Postingan::where("isDone", 0)->where("hilang_ditemukan", "Ditemukan")->with("user", "item", "item.lokasi")->get();
+        $data = Postingan::where("isDone", 0)->where("hilang_ditemukan", "Ditemukan")->with("user", "item", "item.lokasi")->whereRelation("item.lokasi", "kota", "Balikpapan")->get();
         return response()->json($data);
     }
 }

@@ -18,10 +18,12 @@ class PostinganSeeder extends Seeder
         Postingan::create([
             'user_id' => 1,
             'item_id' => 1,
+            'hilang_ditemukan' => "Kehilangan"
         ]);
         Postingan::create([
             'user_id' => 1,
             'item_id' => 2,
+            'hilang_ditemukan' => "Ditemukan"
         ]);
     }
 }

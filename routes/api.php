@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ApiController;
+use App\Http\Controllers\HomeTabController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,3 +21,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get("/tes", [ApiController::class, 'tes']);
+
+Route::prefix('/home-tab/get-terbaru')->group(function () {
+    Route::get("/", [HomeTabController::class, 'getTerbaru']);
+});

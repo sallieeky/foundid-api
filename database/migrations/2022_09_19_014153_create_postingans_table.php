@@ -23,7 +23,7 @@ return new class extends Migration
             $table->integer("user_hilang_id")->nullable();
             $table->boolean("isAnonym")->nullable();
             $table->text("nama_anonym")->nullable();
-            $table->dateTime("waktu_selesai");
+            $table->dateTime("waktu_selesai")->nullable();
             $table->timestamps();
         });
     }

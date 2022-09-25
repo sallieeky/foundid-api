@@ -22,6 +22,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get("/tes", [ApiController::class, 'tes']);
 
-Route::prefix('/home-tab/get-terbaru')->group(function () {
-    Route::get("/", [HomeTabController::class, 'getTerbaru']);
+Route::prefix('/home-tab')->group(function () {
+    Route::get("/get-terbaru", [HomeTabController::class, 'getTerbaru']);
+    Route::get("/get-kategori", [HomeTabController::class, 'getKategori']);
+    Route::get("/get-hilang", [HomeTabController::class, 'getHilang']);
+    Route::get("/get-ditemukan", [HomeTabController::class, 'getDitemukan']);
 });

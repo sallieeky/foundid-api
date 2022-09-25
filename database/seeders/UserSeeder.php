@@ -26,5 +26,16 @@ class UserSeeder extends Seeder
             "instagram" => "@user1",
             "whatsapp" => "081234567890",
         ]);
+        User::create([
+            "email" => "user2@mail.com",
+            "nama" => "user2",
+            "password" => bcrypt("user2"),
+            "role" => "user",
+            "nik" => 64740202070002,
+            "foto_ktp" => "user2.jpg",
+            "no_telp" => "081234567890",
+            "instagram" => "@user2",
+            "whatsapp" => "081234567890",
+        ]);
     }
 }

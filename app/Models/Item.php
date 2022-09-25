@@ -22,7 +22,7 @@ class Item extends Model
 
     public function lokasi()
     {
-        return $this->hasOne(Lokasi::class, "lokasi_id", "id");
+        return $this->hasOne(Lokasi::class, "id", "lokasi_id");
     }
 
     public function postingan()

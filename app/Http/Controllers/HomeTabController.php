@@ -20,6 +20,19 @@ class HomeTabController extends Controller
         return response()->json($data);
     }
 
+    public function getCountHilangDitemukan(Request $request)
+    {
+        if ($request->header("API_KEY") != env("API_KEY")) {
+            return response()->json([
+                "status" => 403,
+                "message" => "Access denied"
+            ], 403);
+        }
+        $data["kehilangan"] = Postingan::where("isDone", 0)->where("hilang_ditemukan", "Kehilangan")->count();
+        $data["ditemukan"] = Postingan::where("isDone", 0)->where("hilang_ditemukan", "Ditemukan")->count();
+        return response()->json($data);
+    }
+
     public function getKategori(Request $request)
     {
         if ($request->header("API_KEY") != env("API_KEY")) {

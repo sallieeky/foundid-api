@@ -24,6 +24,7 @@ Route::get("/tes", [ApiController::class, 'tes']);
 
 Route::prefix('/home-tab')->group(function () {
     Route::get("/get-terbaru", [HomeTabController::class, 'getTerbaru']);
+    Route::get("/get-count-hilang-ditemukan", [HomeTabController::class, 'getCountHilangDitemukan']);
     Route::get("/get-kategori", [HomeTabController::class, 'getKategori']);
     Route::get("/get-hilang", [HomeTabController::class, 'getHilang']);
     Route::get("/get-ditemukan", [HomeTabController::class, 'getDitemukan']);

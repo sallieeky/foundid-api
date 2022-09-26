@@ -18,12 +18,12 @@ class LokasiSeeder extends Seeder
         Lokasi::create([
             "lat" => '-1.1412593412566838',
             'lng' => '116.86864968546406',
-            'kota' => "Balikpapan"
+            'kota' => "Kota Balikpapan"
         ]);
         Lokasi::create([
             "lat" => '-1.143699972630494',
             'lng' => '116.86718912956557',
-            'kota' => "Balikpapan"
+            'kota' => "Kota Balikpapan"
         ]);
     }
 }

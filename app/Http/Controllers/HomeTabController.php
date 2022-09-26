@@ -16,7 +16,7 @@ class HomeTabController extends Controller
                 "message" => "Access denied"
             ], 403);
         }
-        $data = Postingan::where("isDone", 0)->with("user", "item", "item.lokasi")->whereRelation("item.lokasi", "kota", "Balikpapan")->get();
+        $data = Postingan::where("isDone", 0)->with("user", "item", "item.lokasi")->whereRelation("item.lokasi", "kota", $request->kota)->get();
         return response()->json($data);
     }
 
@@ -28,8 +28,8 @@ class HomeTabController extends Controller
                 "message" => "Access denied"
             ], 403);
         }
-        $data["kehilangan"] = Postingan::where("isDone", 0)->where("hilang_ditemukan", "Kehilangan")->count();
-        $data["ditemukan"] = Postingan::where("isDone", 0)->where("hilang_ditemukan", "Ditemukan")->count();
+        $data["kehilangan"] = Postingan::where("isDone", 0)->where("hilang_ditemukan", "Kehilangan")->whereRelation("item.lokasi", "kota", $request->kota)->count();
+        $data["ditemukan"] = Postingan::where("isDone", 0)->where("hilang_ditemukan", "Ditemukan")->whereRelation("item.lokasi", "kota", $request->kota)->count();
         return response()->json($data);
     }
 
@@ -53,7 +53,7 @@ class HomeTabController extends Controller
                 "message" => "Access denied"
             ], 403);
         }
-        $data = Postingan::where("isDone", 0)->where("hilang_ditemukan", "Kehilangan")->with("user", "item", "item.lokasi")->whereRelation("item.lokasi", "kota", "Balikpapan")->get();
+        $data = Postingan::where("isDone", 0)->where("hilang_ditemukan", "Kehilangan")->with("user", "item", "item.lokasi")->whereRelation("item.lokasi", "kota", $request->kota)->get();
         return response()->json($data);
     }
 
@@ -65,7 +65,7 @@ class HomeTabController extends Controller
                 "message" => "Access denied"
             ], 403);
         }
-        $data = Postingan::where("isDone", 0)->where("hilang_ditemukan", "Ditemukan")->with("user", "item", "item.lokasi")->whereRelation("item.lokasi", "kota", "Balikpapan")->get();
+        $data = Postingan::where("isDone", 0)->where("hilang_ditemukan", "Ditemukan")->with("user", "item", "item.lokasi")->whereRelation("item.lokasi", "kota", $request->kota)->get();
         return response()->json($data);
     }
 }

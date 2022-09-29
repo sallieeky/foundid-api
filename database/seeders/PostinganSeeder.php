@@ -25,5 +25,25 @@ class PostinganSeeder extends Seeder
             'item_id' => 2,
             'hilang_ditemukan' => "Ditemukan"
         ]);
+        Postingan::create([
+            'user_id' => 2,
+            'item_id' => 3,
+            'hilang_ditemukan' => "Ditemukan"
+        ]);
+        Postingan::create([
+            'user_id' => 2,
+            'item_id' => 4,
+            'hilang_ditemukan' => "Kehilangan"
+        ]);
+        Postingan::create([
+            'user_id' => 2,
+            'item_id' => 5,
+            'hilang_ditemukan' => "Kehilangan"
+        ]);
+        Postingan::create([
+            'user_id' => 1,
+            'item_id' => 6,
+            'hilang_ditemukan' => "Ditemukan"
+        ]);
     }
 }

@@ -32,5 +32,41 @@ class ItemSeeder extends Seeder
             'gambar' => "kucing.jpg",
             'deskripsi' => "Lawdjiadj ioawdjaojd awdjaowdj aowdjaojda wdjoajwd fsfsfs"
         ]);
+
+        Item::create([
+            'user_id' => 2,
+            'kategory_id' => 2,
+            'lokasi_id' => 3,
+            'nama' => "Laptop Asus Lama",
+            'gambar' => "laptop_asus.jpg",
+            'deskripsi' => "Lawdjiadj ioawdjaojd awdjaowdj aowdjaojda wdjoajwd fsfsfs"
+        ]);
+
+        Item::create([
+            'user_id' => 2,
+            'kategory_id' => 7,
+            'lokasi_id' => 4,
+            'nama' => "Kunci Mobil Toyota",
+            'gambar' => "kunci_mobil.jpg",
+            'deskripsi' => "Lawdjiadj ioawdjaojd awdjaowdj aowdjaojda wdjoajwd fsfsfs"
+        ]);
+
+        Item::create([
+            'user_id' => 2,
+            'kategory_id' => 2,
+            'lokasi_id' => 5,
+            'nama' => "Laptop Asus E203M",
+            'gambar' => "asus_e203m.jpg",
+            'deskripsi' => "Lawdjiadj ioawdjaojd awdjaowdj aowdjaojda wdjoajwd fsfsfs"
+        ]);
+
+        Item::create([
+            'user_id' => 1,
+            'kategory_id' => 5,
+            'lokasi_id' => 6,
+            'nama' => "Anjing Husky",
+            'gambar' => "anjing_husky.jpg",
+            'deskripsi' => "Lawdjiadj ioawdjaojd awdjaowdj aowdjaojda wdjoajwd fsfsfs"
+        ]);
     }
 }

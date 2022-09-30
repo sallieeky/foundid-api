@@ -22,7 +22,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::prefix("/tes")->group(function () {
     Route::get("/", [ApiController::class, 'tes']);
-    Route::get("/upload", [ApiController::class, 'upload']);
+    Route::post("/upload", [ApiController::class, 'upload']);
 });
 
 Route::prefix('/home-tab')->group(function () {

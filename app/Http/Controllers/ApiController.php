@@ -34,7 +34,6 @@ class ApiController extends Controller
             ], 403);
         }
 
-        return $request;
         $request->file('gambar')->storeAs('public/pembayaran', $request->file('gambar')->getClientOriginalName());
         return response()->json($request->file('gambar')->getClientOriginalName());
     }

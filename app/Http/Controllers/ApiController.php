@@ -38,7 +38,7 @@ class ApiController extends Controller
 
         $gambar = base64_decode($request->data["base64"]);
         // Storage::disk("public/images")->put($request->data["name"], $gambar);
-        File::put(storage_path() . '/images/' . $request->data["name"], $gambar);
+        File::put(storage_path() . '/app/public/images/' . $request->data["name"], $gambar);
         return response()->json("BERHASIL");
     }
 }

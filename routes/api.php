@@ -20,7 +20,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get("/tes", [ApiController::class, 'tes']);
+Route::prefix("/tes")->group(function () {
+    Route::get("/", [ApiController::class, 'tes']);
+    Route::get("/upload", [ApiController::class, 'upload']);
+});
 
 Route::prefix('/home-tab')->group(function () {
     Route::get("/get-terbaru", [HomeTabController::class, 'getTerbaru']);

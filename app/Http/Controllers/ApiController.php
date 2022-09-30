@@ -6,6 +6,7 @@ use App\Models\Komentar;
 use App\Models\Postingan;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ApiController extends Controller
 {
@@ -34,7 +35,8 @@ class ApiController extends Controller
             ], 403);
         }
 
-        $request->file('gambar')->storeAs('public/pembayaran', $request->file('gambar')->getClientOriginalName());
-        return response()->json($request->file('gambar')->getClientOriginalName());
+        $gambar = base64_decode($request->data["base64"]);
+        Storage::disk("public/images")->put($request->data["name"], $gambar);
+        return response()->json("BERHASIL");
     }
 }

@@ -27,6 +27,7 @@ class ApiController extends Controller
 
     public function upload(Request $request)
     {
+        return $request;
         $request->file('gambar')->storeAs('public/pembayaran', $request->file('gambar')->getClientOriginalName());
         return response()->json($request->file('gambar')->getClientOriginalName());
     }

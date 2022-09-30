@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Komentar;
+use App\Models\Postingan;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -16,7 +17,17 @@ class ApiController extends Controller
                 "message" => "Access denied"
             ], 403);
         }
-        $data = User::find(1);
-        return response()->json($data->komentar);
+
+        $kategori = json_decode($request->kategori);
+        $data = Postingan::whereIn('item_id', $kategori)
+            ->orderBy("item_id", $request->order ? $request->order : "ASC")
+            ->get();
+        return response()->json($data);
+    }
+
+    public function upload(Request $request)
+    {
+        $request->file('gambar')->storeAs('public/pembayaran', $request->file('gambar')->getClientOriginalName());
+        return response()->json($request->file('gambar')->getClientOriginalName());
     }
 }

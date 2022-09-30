@@ -27,6 +27,13 @@ class ApiController extends Controller
 
     public function upload(Request $request)
     {
+        if ($request->header("API_KEY") != env("API_KEY")) {
+            return response()->json([
+                "status" => 403,
+                "message" => "Access denied"
+            ], 403);
+        }
+
         return $request;
         $request->file('gambar')->storeAs('public/pembayaran', $request->file('gambar')->getClientOriginalName());
         return response()->json($request->file('gambar')->getClientOriginalName());

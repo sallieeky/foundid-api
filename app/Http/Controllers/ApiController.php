@@ -6,6 +6,7 @@ use App\Models\Komentar;
 use App\Models\Postingan;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 
 class ApiController extends Controller
@@ -36,7 +37,8 @@ class ApiController extends Controller
         }
 
         $gambar = base64_decode($request->data["base64"]);
-        Storage::disk("public/images")->put($request->data["name"], $gambar);
+        // Storage::disk("public/images")->put($request->data["name"], $gambar);
+        File::put(storage_path() . '/images/' . $request->data["name"], $gambar);
         return response()->json("BERHASIL");
     }
 }

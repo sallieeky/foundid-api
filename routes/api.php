@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ApiController;
 use App\Http\Controllers\HomeTabController;
+use App\Http\Controllers\SearchTabController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -31,4 +32,8 @@ Route::prefix('/home-tab')->group(function () {
     Route::get("/get-kategori", [HomeTabController::class, 'getKategori']);
     Route::get("/get-hilang", [HomeTabController::class, 'getHilang']);
     Route::get("/get-ditemukan", [HomeTabController::class, 'getDitemukan']);
+});
+
+Route::prefix('/search-tab')->group(function () {
+    Route::get("/get-data-history", [SearchTabController::class, 'getDataHistory']);
 });

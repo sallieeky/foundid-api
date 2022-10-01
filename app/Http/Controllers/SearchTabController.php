@@ -17,7 +17,7 @@ class SearchTabController extends Controller
         }
         $item_id = json_decode($request->id);
         $data = Postingan::whereIn('item_id', $item_id)
-            ->with("item", "item.lokasi")
+            ->with("item", "item.lokasi", "user")
             ->get();
         return response()->json($data);
     }

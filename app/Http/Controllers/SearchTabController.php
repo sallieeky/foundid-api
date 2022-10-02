@@ -43,7 +43,7 @@ class SearchTabController extends Controller
                 "message" => "Access denied"
             ], 403);
         }
-        $kategori = json_decode($request->kategori);
+        $kategori = explode(",", $request->kategori);
         $data["data"] = Postingan::with("item", "user", "item.lokasi")
             ->whereRelation("item", "nama", "LIKE", "%" . $request->nama . "%")
             ->where("isDone", $request->status)

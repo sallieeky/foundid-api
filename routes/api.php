@@ -36,4 +36,5 @@ Route::prefix('/home-tab')->group(function () {
 
 Route::prefix('/search-tab')->group(function () {
     Route::get("/get-data-history", [SearchTabController::class, 'getDataHistory']);
+    Route::get("/get-kategori", [SearchTabController::class, 'getKategori']);
 });

@@ -47,6 +47,7 @@ class SearchTabController extends Controller
         $status = json_decode($request->status);
         $data["data"] = Postingan::with("item", "user", "item.lokasi")
             ->where("isDone", $status)
+            ->where("hilang_ditemukan", "LIKE", "%" . $request->jenis . "%")
             ->whereRelation("item.lokasi", "kota", "=", $request->kota)
             ->whereRelation("item", "nama", "LIKE", "%" . $request->nama . "%")
             ->whereHas("item.kategory", function ($q) use ($kategori) {

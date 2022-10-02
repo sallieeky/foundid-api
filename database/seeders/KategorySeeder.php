@@ -43,5 +43,9 @@ class KategorySeeder extends Seeder
             "nama" => "Kunci",
             "icon" => "key-chain-variant"
         ]);
+        Kategory::create([
+            "nama" => "Lainnya",
+            "icon" => "key-chain-variant"
+        ]);
     }
 }

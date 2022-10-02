@@ -18,7 +18,7 @@ class HomeTabController extends Controller
         }
         $data["data"] = Postingan::where("isDone", 0)
             ->with("user", "item", "item.lokasi")
-            ->whereRelation("item.lokasi", "kota", $request->kota)
+            ->whereRelation("item.lokasi", "kota", "LIKE", "%" . $request->kota . "%")
             ->get()
             ->take(5);
         $data["total"] = count($data["data"]);
@@ -35,11 +35,11 @@ class HomeTabController extends Controller
         }
         $data["kehilangan"] = Postingan::where("isDone", 0)
             ->where("hilang_ditemukan", "Kehilangan")
-            ->whereRelation("item.lokasi", "kota", $request->kota)
+            ->whereRelation("item.lokasi", "kota", "LIKE", "%" . $request->kota . "%")
             ->count();
         $data["ditemukan"] = Postingan::where("isDone", 0)
             ->where("hilang_ditemukan", "Ditemukan")
-            ->whereRelation("item.lokasi", "kota", $request->kota)
+            ->whereRelation("item.lokasi", "kota", "LIKE", "%" . $request->kota . "%")
             ->count();
         return response()->json($data);
     }
@@ -67,7 +67,7 @@ class HomeTabController extends Controller
         $data["data"] = Postingan::where("isDone", 0)
             ->where("hilang_ditemukan", "Kehilangan")
             ->with("user", "item", "item.lokasi")
-            ->whereRelation("item.lokasi", "kota", $request->kota)
+            ->whereRelation("item.lokasi", "kota", "LIKE", "%" . $request->kota . "%")
             ->get()
             ->take(5);
         $data["total"] = count($data["data"]);
@@ -85,7 +85,7 @@ class HomeTabController extends Controller
         $data["data"] = Postingan::where("isDone", 0)
             ->where("hilang_ditemukan", "Ditemukan")
             ->with("user", "item", "item.lokasi")
-            ->whereRelation("item.lokasi", "kota", $request->kota)
+            ->whereRelation("item.lokasi", "kota", "LIKE", "%" . $request->kota . "%")
             ->get()
             ->take(5);
         $data["total"] = count($data["data"]);

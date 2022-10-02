@@ -45,6 +45,7 @@ class SearchTabController extends Controller
         }
         $kategori = explode(",", $request->kategori);
         $data["data"] = Postingan::with("item", "user", "item.lokasi")
+            ->whereRelation("item.lokasi", "kota", "=", $request->kota)
             ->whereRelation("item", "nama", "LIKE", "%" . $request->nama . "%")
             ->where("isDone", $request->status)
             ->whereHas("item.kategory", function ($q) use ($kategori) {

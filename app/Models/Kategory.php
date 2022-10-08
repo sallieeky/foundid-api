@@ -9,4 +9,10 @@ class Kategory extends Model
 {
     use HasFactory;
     protected $guarded = ["id"];
+    protected $appends = ["diffForHumans"];
+
+    public function getDiffForHumansAttribute()
+    {
+        return $this->getAttribute("created_at")->diffForHumans();
+    }
 }

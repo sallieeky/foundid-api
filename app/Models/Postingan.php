@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
+use DateTimeInterface;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -9,6 +11,20 @@ class Postingan extends Model
 {
     use HasFactory;
     protected $guarded = ["id"];
+
+    protected $dates = ['created_at', 'updated_at'];
+    // protected function serializeDate(DateTimeInterface $dates)
+    // {
+    //     return Carbon::createFromFormat('Y-m-d H:i:s', $dates)->diffForHumans();
+    //     return Carbon::createFromFormat('Y-m-d H:i:s', $dates)->translatedFormat('l, Y-m-d');
+    // }
+
+    protected $appends = ["diffForHumans"];
+
+    public function getDiffForHumansAttribute()
+    {
+        return $this->getAttribute("created_at")->diffForHumans();
+    }
 
     public function user()
     {

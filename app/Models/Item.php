@@ -9,6 +9,12 @@ class Item extends Model
 {
     use HasFactory;
     protected $guarded = ["id"];
+    protected $appends = ["diffForHumans"];
+
+    public function getDiffForHumansAttribute()
+    {
+        return $this->getAttribute("created_at")->diffForHumans();
+    }
 
     public function user()
     {
@@ -28,5 +34,10 @@ class Item extends Model
     public function postingan()
     {
         return $this->hasOne(Postingan::class, "item_id", "id");
+    }
+
+    public function gambar()
+    {
+        return $this->hasMany(Gambar::class, 'item_id', 'id');
     }
 }

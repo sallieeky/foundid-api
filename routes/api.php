@@ -23,6 +23,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::prefix("/tes")->group(function () {
     Route::get("/", [ApiController::class, 'tes']);
+    Route::post("/response", [ApiController::class, 'standardResponse']);
     Route::post("/upload", [ApiController::class, 'upload']);
 });
 
@@ -32,6 +33,7 @@ Route::prefix('/home-tab')->group(function () {
     Route::get("/get-kategori", [HomeTabController::class, 'getKategori']);
     Route::get("/get-hilang", [HomeTabController::class, 'getHilang']);
     Route::get("/get-ditemukan", [HomeTabController::class, 'getDitemukan']);
+    Route::get("/get-user-login", [HomeTabController::class, 'getUserLogin']);
 });
 
 Route::prefix('/search-tab')->group(function () {

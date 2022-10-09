@@ -13,11 +13,10 @@ class Postingan extends Model
     protected $guarded = ["id"];
 
     protected $dates = ['created_at', 'updated_at'];
-    // protected function serializeDate(DateTimeInterface $dates)
-    // {
-    //     return Carbon::createFromFormat('Y-m-d H:i:s', $dates)->diffForHumans();
-    //     return Carbon::createFromFormat('Y-m-d H:i:s', $dates)->translatedFormat('l, Y-m-d');
-    // }
+    protected function serializeDate(DateTimeInterface $dates)
+    {
+        return Carbon::createFromFormat('Y-m-d H:i:s', $dates)->translatedFormat('l, d-m-Y');
+    }
 
     protected $appends = ["diffForHumans"];
 

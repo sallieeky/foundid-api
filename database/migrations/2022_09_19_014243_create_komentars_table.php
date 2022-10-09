@@ -18,6 +18,8 @@ return new class extends Migration
             $table->integer("user_id");
             $table->integer("postingan_id");
             $table->text("pesan");
+            $table->integer("rebound_id")->nullable();
+            $table->integer("jml_suka")->default(0);
             $table->timestamps();
         });
     }

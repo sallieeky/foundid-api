@@ -18,11 +18,17 @@ return new class extends Migration
             $table->string('nama');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
+            $table->string('username')->unique();
+            $table->text('foto')->nullable();
+            $table->string('gender');
             $table->string('password');
-            $table->string('role');
-            $table->char('nik', 16);
-            $table->text('foto_ktp')->nullable();
+            $table->string('nik');
+            $table->string('provinsi');
+            $table->string('kota');
+            $table->text('alamat');
+            $table->string('role')->default("user");
 
+            $table->text('foto_ktp')->nullable();
             $table->string('no_telp')->nullable();
             $table->string('instagram')->nullable();
             $table->string('whatsapp')->nullable();

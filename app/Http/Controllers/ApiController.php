@@ -35,7 +35,9 @@ class ApiController extends Controller
                 "message" => "Access denied"
             ], 403);
         }
-        $response["data"] = Postingan::with("item", 'item.gambar')->get();
+        $response["data"] = Postingan::with("item", 'item.gambar')
+            ->where("isDone", 0)
+            ->get();
         $response["total"] = count($response["data"]);
         return response()->json($response, 200);
     }

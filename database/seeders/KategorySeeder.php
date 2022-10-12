@@ -45,7 +45,7 @@ class KategorySeeder extends Seeder
         ]);
         Kategory::create([
             "nama" => "Lainnya",
-            "icon" => "key-chain-variant"
+            "icon" => "view-grid-outline"
         ]);
     }
 }

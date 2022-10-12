@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Kategory;
 use App\Models\Postingan;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class HomeTabController extends Controller
@@ -17,11 +18,23 @@ class HomeTabController extends Controller
             ], 403);
         }
         $data["data"] = Postingan::where("isDone", 0)
-            ->with("user", "item", "item.lokasi")
+            ->with("user", "item", "item.lokasi", "item.gambar")
             ->whereRelation("item.lokasi", "kota", "LIKE", "%" . $request->kota . "%")
             ->get()
             ->take(5);
         $data["total"] = count($data["data"]);
+        return response()->json($data);
+    }
+
+    public function getUserLogin(Request $request)
+    {
+        if ($request->header("API_KEY") != env("API_KEY")) {
+            return response()->json([
+                "status" => 403,
+                "message" => "Access denied"
+            ], 403);
+        }
+        $data = User::find($request->id);
         return response()->json($data);
     }
 
@@ -66,7 +79,7 @@ class HomeTabController extends Controller
         }
         $data["data"] = Postingan::where("isDone", 0)
             ->where("hilang_ditemukan", "Kehilangan")
-            ->with("user", "item", "item.lokasi")
+            ->with("user", "item", "item.lokasi", "item.gambar")
             ->whereRelation("item.lokasi", "kota", "LIKE", "%" . $request->kota . "%")
             ->get()
             ->take(5);
@@ -84,7 +97,7 @@ class HomeTabController extends Controller
         }
         $data["data"] = Postingan::where("isDone", 0)
             ->where("hilang_ditemukan", "Ditemukan")
-            ->with("user", "item", "item.lokasi")
+            ->with("user", "item", "item.lokasi", "item.gambar")
             ->whereRelation("item.lokasi", "kota", "LIKE", "%" . $request->kota . "%")
             ->get()
             ->take(5);

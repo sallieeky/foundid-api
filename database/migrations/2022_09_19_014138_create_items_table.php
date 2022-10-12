@@ -19,7 +19,6 @@ return new class extends Migration
             $table->integer("kategory_id");
             $table->integer("lokasi_id");
             $table->text("nama");
-            $table->text("gambar");
             $table->text("deskripsi");
             $table->timestamps();
         });

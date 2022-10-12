@@ -18,22 +18,11 @@ class SearchTabController extends Controller
             ], 403);
         }
         $item_id = explode(",", $request->id);
-        $data = Postingan::whereIn('item_id', $item_id)
-            ->with("item", "item.lokasi", "user")
+        $response["data"] = Postingan::whereIn('item_id', $item_id)
+            ->with("item", "item.lokasi", "user", "item.gambar")
             ->get();
-        return response()->json($data);
-    }
-
-    public function getUserLogin(Request $request)
-    {
-        if ($request->header("API_KEY") != env("API_KEY")) {
-            return response()->json([
-                "status" => 403,
-                "message" => "Access denied"
-            ], 403);
-        }
-        $data = User::find($request->id);
-        return response()->json($data);
+        $response["total"] = count($response["data"]);
+        return response()->json($response);
     }
 
     public function getKategori(Request $request)
@@ -58,7 +47,7 @@ class SearchTabController extends Controller
         }
         $kategori = explode(",", $request->kategori);
         $status = json_decode($request->status);
-        $data["data"] = Postingan::with("item", "user", "item.lokasi")
+        $data["data"] = Postingan::with("item", "user", "item.lokasi", "item.gambar")
             ->where("isDone", $status)
             ->where("hilang_ditemukan", "LIKE", "%" . $request->jenis . "%")
             ->whereRelation("item.lokasi", "kota", "=", $request->kota)

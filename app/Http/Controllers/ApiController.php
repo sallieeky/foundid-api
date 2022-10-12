@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 
 class ApiController extends Controller
 {
@@ -18,6 +19,14 @@ class ApiController extends Controller
                 "status" => 403,
                 "message" => "Access denied"
             ], 403);
+        }
+        $validator = Validator::make($request->all(), [
+            'kategori' => 'required',
+            'order' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json($validator->messages());
         }
 
         $kategori = json_decode($request->kategori);

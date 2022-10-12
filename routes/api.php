@@ -29,6 +29,7 @@ Route::prefix("/tes")->group(function () {
 });
 Route::prefix("/auth")->controller(AuthController::class)->group(function () {
     Route::post("/register/first", "registerFirst");
+    Route::post("/register/second", "registerSecond");
 });
 
 

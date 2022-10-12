@@ -38,4 +38,35 @@ class AuthController extends Controller
 
         return response()->json(true);
     }
+    public function registerSecond(Request $request)
+    {
+        if ($request->header("API_KEY") != env("API_KEY")) {
+            return response()->json([
+                "status" => 403,
+                "message" => "Access denied"
+            ], 403);
+        }
+        $validator = Validator::make($request->all(), [
+            'jenisKelamin' => 'required',
+            'nik' => 'required|size:16',
+            'provinsi' => 'required',
+            'kota' => 'required',
+            'alamat' => 'required',
+            'ktp' => 'required',
+        ], [
+            "jenisKelamin.required" => "Tidak boleh kosong",
+            "nik.required" => "Tidak boleh kosong",
+            "provinsi.required" => "Tidak boleh kosong",
+            "kota.required" => "Tidak boleh kosong",
+            "alamat.required" => "Tidak boleh kosong",
+            "ktp.required" => "Tidak boleh kosong",
+            "nik.size" => "Panjang NIK 16 digit",
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json($validator->messages());
+        }
+
+        return response()->json(true);
+    }
 }

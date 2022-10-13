@@ -43,7 +43,7 @@ Route::prefix('/home-tab')->controller(HomeTabController::class)->group(function
     Route::get("/get-user-login", 'getUserLogin');
 });
 
-Route::prefix('/search-tab')->controller(HomeTabController::class)->group(function () {
+Route::prefix('/search-tab')->controller(SearchTabController::class)->group(function () {
     Route::get("/get-data-history", 'getDataHistory');
     Route::get("/get-kategori", 'getKategori');
     Route::get("/get-data", 'getData');

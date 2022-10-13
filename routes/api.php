@@ -22,28 +22,29 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::prefix("/tes")->group(function () {
-    Route::get("/", [ApiController::class, 'tes']);
-    Route::post("/response", [ApiController::class, 'standardResponse']);
-    Route::post("/upload", [ApiController::class, 'upload']);
+Route::prefix("/tes")->controller(ApiController::class)->group(function () {
+    Route::get("/", 'tes');
+    Route::post("/response", 'standardResponse');
+    Route::post("/upload", 'upload');
 });
 Route::prefix("/auth")->controller(AuthController::class)->group(function () {
     Route::post("/register/first", "registerFirst");
     Route::post("/register/second", "registerSecond");
+    Route::post("/register/third", "registerThird");
 });
 
 
-Route::prefix('/home-tab')->group(function () {
-    Route::get("/get-terbaru", [HomeTabController::class, 'getTerbaru']);
-    Route::get("/get-count-hilang-ditemukan", [HomeTabController::class, 'getCountHilangDitemukan']);
-    Route::get("/get-kategori", [HomeTabController::class, 'getKategori']);
-    Route::get("/get-hilang", [HomeTabController::class, 'getHilang']);
-    Route::get("/get-ditemukan", [HomeTabController::class, 'getDitemukan']);
-    Route::get("/get-user-login", [HomeTabController::class, 'getUserLogin']);
+Route::prefix('/home-tab')->controller(HomeTabController::class)->group(function () {
+    Route::get("/get-terbaru", 'getTerbaru');
+    Route::get("/get-count-hilang-ditemukan", 'getCountHilangDitemukan');
+    Route::get("/get-kategori", 'getKategori');
+    Route::get("/get-hilang", 'getHilang');
+    Route::get("/get-ditemukan", 'getDitemukan');
+    Route::get("/get-user-login", 'getUserLogin');
 });
 
-Route::prefix('/search-tab')->group(function () {
-    Route::get("/get-data-history", [SearchTabController::class, 'getDataHistory']);
-    Route::get("/get-kategori", [SearchTabController::class, 'getKategori']);
-    Route::get("/get-data", [SearchTabController::class, 'getData']);
+Route::prefix('/search-tab')->controller(HomeTabController::class)->group(function () {
+    Route::get("/get-data-history", 'getDataHistory');
+    Route::get("/get-kategori", 'getKategori');
+    Route::get("/get-data", 'getData');
 });

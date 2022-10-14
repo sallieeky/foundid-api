@@ -4,11 +4,43 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
+    public function login(Request $request)
+    {
+        if ($request->header("API_KEY") != env("API_KEY")) {
+            return response()->json([
+                "status" => 403,
+                "message" => "Access denied"
+            ], 403);
+        }
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email',
+            'password' => 'required|min:8',
+        ], [
+            "email.required" => "Tidak boleh kosong",
+            "email.email" => "Masukkan format email dengan benar",
+            "password.required" => "Tidak boleh kosong",
+            "password.min" => "Minimal 8 digit",
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json($validator->messages());
+        }
+
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+            $response["data"] = Auth::user();
+            $response["status"] = true;
+        } else {
+            $response['data'] = [];
+            $response["status"] = false;
+        }
+        return response()->json($response);
+    }
     public function registerFirst(Request $request)
     {
         if ($request->header("API_KEY") != env("API_KEY")) {

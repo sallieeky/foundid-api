@@ -20,7 +20,7 @@ class UserSeeder extends Seeder
             "email" => "user1@mail.com",
             "username" => "user1",
             "gender" => "Laki-laki",
-            "password" => bcrypt("user1"),
+            "password" => bcrypt("user12345"),
             "nik" => "6474020207010001",
 
             "provinsi" => "Kalimantan Timur",
@@ -38,7 +38,7 @@ class UserSeeder extends Seeder
             "email" => "user2@mail.com",
             "username" => "user2",
             "gender" => "Laki-laki",
-            "password" => bcrypt("user2"),
+            "password" => bcrypt("user12345"),
             "nik" => "6474020207010002",
 
             "provinsi" => "Kalimantan Timur",

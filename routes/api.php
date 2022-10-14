@@ -28,6 +28,7 @@ Route::prefix("/tes")->controller(ApiController::class)->group(function () {
     Route::post("/upload", 'upload');
 });
 Route::prefix("/auth")->controller(AuthController::class)->group(function () {
+    Route::post("/login", "login");
     Route::post("/register/first", "registerFirst");
     Route::post("/register/second", "registerSecond");
     Route::post("/register/third", "registerThird");

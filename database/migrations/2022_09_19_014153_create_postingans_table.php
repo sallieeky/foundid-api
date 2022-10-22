@@ -17,12 +17,13 @@ return new class extends Migration
             $table->id();
             $table->integer("user_id");
             $table->integer("item_id");
-            $table->boolean("isDone")->default(false);
             $table->string("hilang_ditemukan")->nullable();
             $table->integer("user_ditemukan_id")->nullable();
             $table->integer("user_hilang_id")->nullable();
             $table->boolean("isAnonym")->nullable();
+            $table->boolean("isDone")->default(false);
             $table->text("nama_anonym")->nullable();
+            $table->date("tanggal");
             $table->dateTime("waktu_selesai")->nullable();
             $table->timestamps();
         });

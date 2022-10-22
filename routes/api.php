@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AddTabController;
 use App\Http\Controllers\ApiController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeTabController;
@@ -48,4 +49,9 @@ Route::prefix('/search-tab')->controller(SearchTabController::class)->group(func
     Route::get("/get-data-history", 'getDataHistory');
     Route::get("/get-kategori", 'getKategori');
     Route::get("/get-data", 'getData');
+});
+
+Route::prefix('/add-tab')->controller(AddTabController::class)->group(function () {
+    Route::get("/get-kategori", 'getKategori');
+    Route::post("/upload", 'upload');
 });

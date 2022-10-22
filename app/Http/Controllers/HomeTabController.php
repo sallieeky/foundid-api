@@ -18,7 +18,10 @@ class HomeTabController extends Controller
             ], 403);
         }
         $data["data"] = Postingan::where("isDone", 0)
-            ->with("user", "item", "item.lokasi", "item.gambar")
+            ->with("user", "item", "item.lokasi", "item.gambar", "item.kategory")
+            ->with(['komentar' => function ($query) {
+                $query->orderBy('id', "DESC");
+            }])
             ->whereRelation("item.lokasi", "kota", "LIKE", "%" . $request->kota . "%")
             ->get()
             ->take(5);
@@ -79,7 +82,10 @@ class HomeTabController extends Controller
         }
         $data["data"] = Postingan::where("isDone", 0)
             ->where("hilang_ditemukan", "Kehilangan")
-            ->with("user", "item", "item.lokasi", "item.gambar")
+            ->with("user", "item", "item.lokasi", "item.gambar", "item.kategory")
+            ->with(['komentar' => function ($query) {
+                $query->orderBy('id', "DESC");
+            }])
             ->whereRelation("item.lokasi", "kota", "LIKE", "%" . $request->kota . "%")
             ->get()
             ->take(5);
@@ -97,7 +103,10 @@ class HomeTabController extends Controller
         }
         $data["data"] = Postingan::where("isDone", 0)
             ->where("hilang_ditemukan", "Ditemukan")
-            ->with("user", "item", "item.lokasi", "item.gambar")
+            ->with("user", "item", "item.lokasi", "item.gambar", "item.kategory")
+            ->with(['komentar' => function ($query) {
+                $query->orderBy('id', "DESC");
+            }])
             ->whereRelation("item.lokasi", "kota", "LIKE", "%" . $request->kota . "%")
             ->get()
             ->take(5);

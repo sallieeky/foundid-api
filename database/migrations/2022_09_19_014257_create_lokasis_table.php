@@ -17,7 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string("lat");
             $table->string("lng");
-            $table->string("kota");
+            $table->string("kota")->nullable();
+            $table->text("detail")->nullable();
             $table->timestamps();
         });
     }

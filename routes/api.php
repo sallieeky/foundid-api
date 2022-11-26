@@ -3,6 +3,7 @@
 use App\Http\Controllers\AddTabController;
 use App\Http\Controllers\ApiController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\GlobalController;
 use App\Http\Controllers\HomeTabController;
 use App\Http\Controllers\SearchTabController;
 use Illuminate\Http\Request;
@@ -35,6 +36,11 @@ Route::prefix("/auth")->controller(AuthController::class)->group(function () {
     Route::post("/register/third", "registerThird");
 });
 
+Route::prefix('/global')->controller(GlobalController::class)->group(function () {
+    Route::get("/get-kategori", 'getKategori');
+    Route::get("/get-list-item-postingan", 'getListItemPostingan');
+    Route::get("/get-user-login", 'getUserLogin');
+});
 
 Route::prefix('/home-tab')->controller(HomeTabController::class)->group(function () {
     Route::get("/get-terbaru", 'getTerbaru');
@@ -42,7 +48,6 @@ Route::prefix('/home-tab')->controller(HomeTabController::class)->group(function
     Route::get("/get-kategori", 'getKategori');
     Route::get("/get-hilang", 'getHilang');
     Route::get("/get-ditemukan", 'getDitemukan');
-    Route::get("/get-user-login", 'getUserLogin');
 });
 
 Route::prefix('/search-tab')->controller(SearchTabController::class)->group(function () {

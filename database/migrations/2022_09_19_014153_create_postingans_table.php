@@ -22,6 +22,7 @@ return new class extends Migration
             $table->integer("user_hilang_id")->nullable();
             $table->boolean("isAnonym")->nullable();
             $table->boolean("isDone")->default(false);
+            $table->boolean("isHidden")->default(false);
             $table->text("nama_anonym")->nullable();
             $table->date("tanggal");
             $table->dateTime("waktu_selesai")->nullable();

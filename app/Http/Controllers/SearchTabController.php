@@ -47,7 +47,10 @@ class SearchTabController extends Controller
         }
         $kategori = explode(",", $request->kategori);
         $status = json_decode($request->status);
-        $data["data"] = Postingan::with("item", "user", "item.lokasi", "item.gambar")
+        $data["data"] = Postingan::with("item", "user", "item.lokasi", "item.gambar", "item.kategory")
+            ->with(['komentar' => function ($query) {
+                $query->orderBy('id', "DESC");
+            }])
             ->where("isDone", $status)
             ->where("hilang_ditemukan", "LIKE", "%" . $request->jenis . "%")
             ->whereRelation("item.lokasi", "kota", "=", $request->kota)
@@ -57,6 +60,7 @@ class SearchTabController extends Controller
             })
             ->orderBy("id", $request->order)
             ->get();
+
         $data["total"] = count($data["data"]);
         return response()->json($data);
     }

@@ -53,10 +53,10 @@ class AddTabController extends Controller
             "deskripsi.required" => "Data tidak boleh dikosongkan!",
         ]);
 
+
         if ($validator->fails()) {
             return response()->json($validator->messages());
         }
-
 
         $lokasi = Lokasi::create([
             'lat' => $request->lokasi["lat"],

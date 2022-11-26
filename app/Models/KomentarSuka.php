@@ -7,11 +7,12 @@ use DateTimeInterface;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Komentar extends Model
+class KomentarSuka extends Model
 {
     use HasFactory;
-    protected $guarded = ["id"];
-    protected $appends = ["diffForHumans", "jmlSuka"];
+    protected $guarded = ['id'];
+
+    protected $appends = ["diffForHumans"];
     protected $dates = ['created_at', 'updated_at'];
     protected function serializeDate(DateTimeInterface $dates)
     {
@@ -21,23 +22,13 @@ class Komentar extends Model
     {
         return $this->getAttribute("created_at")->diffForHumans();
     }
-    public function getJmlSukaAttribute()
-    {
-        return $this->komentar_suka->count();
-    }
 
     public function user()
     {
-        return $this->belongsTo(User::class, "user_id", "id");
+        return $this->hasOne(User::class, "user_id", "id");
     }
-
-    public function postingan()
+    public function komentar()
     {
-        return $this->belongsTo(Postingan::class, "postingan_id", "id");
-    }
-
-    public function komentar_suka()
-    {
-        return $this->hasMany(KomentarSuka::class, "komentar_id", "id");
+        return $this->belongsTo(Komentar::class, "komentar_id", "id");
     }
 }

@@ -29,17 +29,6 @@ class HomeTabController extends Controller
         return response()->json($data);
     }
 
-    public function getUserLogin(Request $request)
-    {
-        if ($request->header("API_KEY") != env("API_KEY")) {
-            return response()->json([
-                "status" => 403,
-                "message" => "Access denied"
-            ], 403);
-        }
-        $data = User::find($request->id);
-        return response()->json($data);
-    }
 
     public function getCountHilangDitemukan(Request $request)
     {
